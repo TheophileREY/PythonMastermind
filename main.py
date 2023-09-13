@@ -72,11 +72,16 @@ def jouer_partie(couleurs):
         # Verifier si la reponse est correcte
         correct = 0
         partiel = 0
+        temp = list(reponse)
         for i in range(nbr_couleur):
-            if reponse[i] == code_secret[i]:
+            if temp[i] == code_secret[i]:
                 correct += 1
-            elif reponse[i] in code_secret:
+                temp[i] = '.' # On met un point pour ne pas compter deux fois une couleur
+
+        for i in range(nbr_couleur):
+            if temp[i] in code_secret:
                 partiel += 1
+                temp[i] = '.' # On met un point pour ne pas compter deux fois une couleur
 
         # Afficher le resultat
         print("Correct : " + str(correct) + " | Partiel : " + str(partiel))
